@@ -5,21 +5,24 @@ import AnimatedAmount from './components/AnimatedAmount';
 
 function App() {
   const [start, toggle] = useState(false);
+  const examples = [
+    '0987654321',
+    '15.000,100',
+    '50000,13',
+    '$800,10',
+    '1000€',
+    2019,
+    2018,
+    2016,
+    2014,
+    1990
+  ];
 
   return (
     <>
-      <AnimatedAmount number={'0987654321'} start={start}/>
-      <AnimatedAmount number={2050} start={start}/>
-      <AnimatedAmount number={2020} start={start}/>
-      <AnimatedAmount number={2030} start={start}/>
-      <AnimatedAmount number={2019} start={start}/>
-      <AnimatedAmount number={2018} start={start}/>
-      <AnimatedAmount number={2016} start={start}/>
-      <AnimatedAmount number={2014} start={start}/>
-      <AnimatedAmount number={2011} start={start}/>
-      <AnimatedAmount number={2007} start={start}/>
-      <AnimatedAmount number={1990} start={start}/>
-      <AnimatedAmount number={1234567890} start={start}/>
+      {examples.map((example, index) => (
+        <AnimatedAmount number={example} start={start} key={index} />
+      ))}
       <div className={'Controls'}>
         <button onClick={() => toggle(false)}>Reset</button>
         <button onClick={() => toggle(true)}>Start</button>

@@ -40,23 +40,27 @@ const AnimatedAmount = ({ number, start }) => {
   return (
     <div className={'Counter'}>
       {list.map((n, index) => {
-        return (
-          <div className={'ListContainer'} key={index}>
-            <Spring
-              from={{ top: 0 }}
-              to={{ top: getPosition(n) }}
-              config={{ tension: 30, clamp: true, friction: getFriction(n) }}
-            >
-              {styles => (
-                <animated.ul className={'List'} style={styles}>
-                  {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((number, index) => (
-                    <li key={index}>{number}</li>
-                  ))}
-                </animated.ul>
-              )}
-            </Spring>
-          </div>
-        );
+        if (Number.isInteger(parseInt(n, 10))) {
+          return (
+            <div className={'ListContainer'} key={index}>
+              <Spring
+                from={{ top: 0 }}
+                to={{ top: getPosition(n) }}
+                config={{ tension: 30, clamp: true, friction: getFriction(n) }}
+              >
+                {styles => (
+                  <animated.ul className={'List'} style={styles}>
+                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((number, index) => (
+                      <li key={index}>{number}</li>
+                    ))}
+                  </animated.ul>
+                )}
+              </Spring>
+            </div>
+          );
+        }
+
+        return <span className={'StaticElement'} key={index}>{n}</span>
       })}
     </div>
   );
